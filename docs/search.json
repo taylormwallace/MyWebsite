@@ -1,0 +1,29 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-10-11T10:43:36-07:00"
+    },
+    {
+      "path": "index.html",
+      "title": "mfeo",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-10-27T07:06:00-07:00"
+    },
+    {
+      "path": "tobi.html",
+      "title": "mfeo",
+      "description": "mfeo\n",
+      "author": [],
+      "contents": "\r\nI am a classically trained data scientist living in the San Francisco Bay Area. Currently I work on the Oculus team at Facebook. I love talking about baseball, true crime podcasts, and causal inference.\r\n\r\n\r\nlibrary(distill)\r\nlibrary(postcards)\r\ncreate_theme(\"postcards\")\r\n\r\n\r\nv Created CSS file at postcards.css \r\no TODO: Customize it to suit your needs \r\no TODO: Add 'theme: postcards.css' to your site or article YAML\r\n \r\nSee docs at https://rstudio.github.io/distill/website.html#theming\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-10-27T09:59:45-07:00"
+    }
+  ],
+  "collections": []
+}
