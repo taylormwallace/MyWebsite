@@ -1,0 +1,62 @@
+---
+title: "Resume"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+ 
+ 
+<center>
+
+<center>
+
+# TAYLOR WALLACE
+
+Mississippi State University
+
+taylormwallace10@gmail.com
+
+</center>
+
+------------------------------------------------------------------------
+
+</center>
+
+## EDUCATION
+
+### Master of Taxation & Minor in Accounting Analytics:             
+* Mississippi State University, Adkerson School of Accountancy
+* Will complete May 2022
+
+### Candidate for the Uniform CPA Exam:
+* BEC scheduled for 1/19/22
+
+### Bachelor of Accountancy, Magna Cum Laude:            
+* Mississippi State University, Adkerson School of Accountancy        
+* GPA: 3.67/4.00
+* Completed May 2021
+
+## WORK EXPERIENCE
+
+### Graduate Research Assistant, MSU Office of Sponsored Projects        May 2021 – Current
+* Assemble subaward agreements and send to organizations for signatures
+* Answer any questions from the organizations regarding the agreements
+* Send requests for any documents needed to complete the agreements
+
+### Tax Intern, Reynolds Bone & Griesbeck January – March 2021
+* Made numerous spreadsheets and schedules to simplify tax preparation
+* Prepared 1040, 1041, and 1065 returns
+* Prepared clients’ workpaper files
+
+## CAMPUS INVOLVEMENT
+* Beta Gamma Sigma Business Honor Society
+* Beta Alpha Psi Honor Society
+* Chi Omega Fraternity Phi Delta Chapter
+
+## SKILLS
+* Microsoft Excel, Access, Word
+* ACL 
+* RStudio
+* Tableau

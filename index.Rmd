@@ -1,18 +1,25 @@
 ---
-title: "mfeo"
-description: |
-  Welcome to the website. I hope you enjoy it!
+title: "Taylor Wallace"
+image: "headshot.jpg"
+links:
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/taylor-wallace-a98638195/
+  - label: Email
+    url: "mailto:tw1619@msstate.edu"
+  - label: GitHub
+    url: "https://github.com/taylormwallace"
+output:
+  postcards::trestles
 site: distill::distill_website
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
 
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
 
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
+I am currently working towards my Masters of Taxation at Mississippi State University. After graduation I will be starting my career as a Staff Accountant at LBMC in Nashville, TN.
+`
 
-```
+
+
+
+
 

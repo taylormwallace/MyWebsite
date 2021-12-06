@@ -1,0 +1,71 @@
+---
+title: "Rsquared"
+description: |
+  You have been lied to about R-squared
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+---
+In undergrad I took a class almost completely dedicated to teaching R-squared. It is taught as a surefire statistical measure that should be relied on. 
+
+R-squared measures how much variation of a dependent variable is explained by the independent variable in a regression model.
+
+In this class we learned that R-squared should not be blindly relied on because it can be easily changed either mistakenly or purposely. People who do not know this can easily be manipulated into believing something that is not true about their data.
+
+Below is one example of a problem with R-squared:
+
+
+In R, we typically get R-squared by calling the summary function on a model object. Here’s a quick example using simulated data:
+
+```{r}
+# independent variable
+x <- 1:20 
+# for reproducibility
+set.seed(1) 
+# dependent variable; function of x with random error
+y <- 2 + 0.5*x + rnorm(20,0,3) 
+# simple linear regression
+mod <- lm(y~x)
+# request just the r-squared value
+summary(mod)$r.squared 
+```
+
+One way to express R-squared is as the sum of squared fitted-value deviations divided by the sum of squared original-value deviations:
+
+$$R^{2} =  \frac{\sum (\hat{y} – \bar{\hat{y}})^{2}}{\sum (y – \bar{y})^{2}}$$
+
+We can calculate it directly using our model object like so:
+
+```{r}
+# extract fitted (or predicted) values from model
+f <- mod$fitted.values
+# sum of squared fitted-value deviations
+mss <- sum((f - mean(f))^2)
+# sum of squared original-value deviations
+tss <- sum((y - mean(y))^2)
+# r-squared
+mss/tss  
+```
+
+R-squared does not measure goodness of fit. It can be arbitrarily low when the model is completely correct. By making $$σ^2$$ large, we drive R-squared towards 0, even when every assumption of the simple linear regression model is correct in every particular.
+
+```{r}
+r2.0 <- function(sig){
+  # our predictor
+  x <- seq(1,10,length.out = 100)   
+  # our response; a function of x plus some random noise
+  y <- 2 + 1.2*x + rnorm(100,0,sd = sig) 
+  # print the R-squared value
+  summary(lm(y ~ x))$r.squared          
+}
+
+sigmas <- seq(0.5,20,length.out = 20)
+ # apply our function to a series of sigma values
+rout <- sapply(sigmas, r2.0)            
+plot(rout ~ sigmas, type="b")
+```
+
+R-squared tanks hard with increasing sigma, even though the model is completely correct in every respect.
+
+A solution to this problem would be finding the R-squared with different values of sigmas to see how it affects it. If the change in sigmas causes a big change in R-squared, I would switch to a different measure of goodness of fit.

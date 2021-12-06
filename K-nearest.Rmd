@@ -1,0 +1,101 @@
+---
+title: "Final Project"
+output: html_document
+---
+
+# Random Forest
+
+The data I have chosen is from the UCI Machine Learning Repository. It is a dataset that has different health characteristics of women from age 18-36 and if their fertility diagnosis was normal or altered. Variables include the season the test was done, age, childhood diseases, accidents or serious trauma, surgical intervention, high fevers within the past year, alcohol consumption, smoking habits, and number of hours spent sitting during the day. 
+
+This data shouldn't be very skewed, but there could be some outliers. There may be instances where women have no underlying conditions and still can't get pregnant for reasons not accounted for in this dataset or some may have all the underlying conditions shown and still be able to get pregnant.
+
+Random Forest uses bagging and creates a set of decision trees for the dataset. Decision trees can classify instances. Each decision tree represents a question or an attribute and based on the instance's "answer" to that question it will be classified as one thing or another. Random forest takes into consideration all the decision trees together instead of just looking at one.
+
+For example in this dataset the instances will be classified as normal fertility or altered fertility based on the answers to the questions of the decision trees such as age, alcohol consumption, etc. The algorithm takes into account all the decision trees before making a decision on the classification. In the Output column N means normal and O means altered.
+
+```{r, echo=FALSE, message=FALSE}
+library(caret)
+library(tidyverse)
+
+```
+
+```{r,echo=FALSE}
+load(file = "fertility_Diagnosis.Rda")
+
+```
+
+
+```{r}
+set.seed(1)
+#lets split the data 60/40
+library(caret)
+trainIndex <- createDataPartition(fertility_Diagnosis$Output, p = .6, list = FALSE, times = 1)
+```
+
+```{r}
+#grab the data
+FertilityTrain <- fertility_Diagnosis[ trainIndex,]
+FertilityTest  <- fertility_Diagnosis[-trainIndex,]
+```
+
+The model:
+
+```{r, message=FALSE, warning=FALSE}
+set.seed(1)
+
+FertilityRF<- train(
+  form = factor(Output) ~ .,
+  data = FertilityTrain,
+  #here we add classProbs because we want probs
+  trControl = trainControl(method = "cv", number = 10,
+                           classProbs =  TRUE),
+  method = "rf",
+  tuneLength = 3)
+
+FertilityRF
+```
+
+```{r}
+summary(FertilityRF)
+```
+
+```{r}
+FertilityRF_Pred<-predict(FertilityRF,FertilityTest,type="prob")
+
+knitr::kable(FertilityRF_Pred)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "50%",height="300px")
+```
+
+```{r}
+fertilityrftestpred<-cbind(FertilityRF_Pred,FertilityTest)
+
+fertilityrftestpred<-fertilityrftestpred%>%
+  mutate(prediction=if_else(N>O,"N",
+                            if_else(O>N, "O", "PROBLEM")))
+
+table(fertilityrftestpred$prediction)
+```
+
+```{r, warning=FALSE}
+confusionMatrix(factor(fertilityrftestpred$prediction),factor(fertilityrftestpred$Output))
+```
+
+The confusion matrix shows that the accuracy of our model is 89.7% which is pretty good for the real world. 
+
+Here is a graph plotting the output based on age and alcohol consumption with several times a day, every day, several times a week, once a week, and hardly ever or never being quantified on a scale from 0 to 1. Age is quantified on a scale from 0 to 1 with 18 being 0 and 36 being 1.
+
+```{r}
+ggplot(data=FertilityTrain)+geom_point(mapping = aes(x=AlcoholConsumption,y=Age,color=Output),alpha=0.5) + labs(color = "Training Output")+
+geom_point(data=FertilityTest, ,mapping = aes(x=AlcoholConsumption,y=Age,shape=Output)) + labs(shape = "Testing Output") +
+  ggtitle("The data")+
+  theme(plot.title = element_text(hjust=0.5, size=10, face='bold'))
+```
+
+As you can see there doesn't seem to be a strong relationship between just these two variables and fertility. This is why it is helpful that random forest takes all the variables into account when making a classification.
+
+This could be helpful if it could be turned into a survey of some sort women could fill out for themselves and get an idea of their fertility before spending money on doctor appointments. It wouldn't be a surefire method but it could give them a starting point.
+
+ 
+
+

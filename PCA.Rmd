@@ -1,0 +1,43 @@
+---
+title: "PCA"
+output: html_document
+---
+
+# Principcal Component Analysis (PCA)
+
+PCA is a form of dimensionality reduction used to simplify large datasets that may have useless information for what you are trying to find or predict. The algorithm uses linear algebra to test different combinations of variables to determine which ones are most important. This helps you know which variables to use for the data when using other machine learning algorithms.
+
+Below is an example of PCA in use:
+
+```{r,echo=FALSE, message=FALSE}
+library(caret)
+```
+
+
+```{r}
+dat <- iris
+caret.pca <- preProcess(dat[,-5], method="pca",pcaComp=2)
+
+caret.pca
+```
+
+```{r}
+caret.pca
+dat2 <- predict(caret.pca, dat[,-5])
+
+stat.pca <- prcomp(dat[,-5],
+                 center = TRUE,
+                 scale. = TRUE)
+
+plot(stat.pca, type = "l")
+```
+
+Below shows the importance of the components:
+
+```{r}
+summary(stat.pca)
+```
+
+You can see that PC2 captures about 96% of the variance so this is the most efficient use of the variables.
+
+PCA could be useful in accounting when a client gives you a large datasets with hundreds of components. You may not have time to look through them all to determine which ones are most important, but you can simply run a PCA model and let it figure out which variables you should pay attention to.

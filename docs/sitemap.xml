@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
+  <url>
+    <loc>https://github.com/taylormwallace/MyWebsite/about.html</loc>
+    <lastmod>2021-10-11T10:41:05-07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/taylormwallace/MyWebsite/</loc>
+    <lastmod>2021-11-30T08:58:53-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/taylormwallace/MyWebsite/K-nearest.html</loc>
+    <lastmod>2021-12-06T11:42:26-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/taylormwallace/MyWebsite/PCA.html</loc>
+    <lastmod>2021-12-01T06:59:30-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/taylormwallace/MyWebsite/Resume.html</loc>
+    <lastmod>2021-11-30T09:12:10-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/taylormwallace/MyWebsite/RSquared.html</loc>
+    <lastmod>2021-11-30T11:42:33-08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/taylormwallace/MyWebsite/tobi.html</loc>
+    <lastmod>2021-10-27T09:38:21-07:00</lastmod>
+  </url>
+</urlset>
