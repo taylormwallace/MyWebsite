@@ -1,6 +1,9 @@
 ---
 title: "PCA"
-output: html_document
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
 ---
 
 # Principcal Component Analysis (PCA)
@@ -30,6 +33,7 @@ stat.pca <- prcomp(dat[,-5],
                  scale. = TRUE)
 
 plot(stat.pca, type = "l")
+
 ```
 
 Below shows the importance of the components:
